@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Team 2 Video Gallery</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet' href='unitegallery/css/unite-gallery.css' type='text/css' />
+
+    <script type='text/javascript' src='unitegallery/js/jquery-11.0.min.js'></script>
+    <script type='text/javascript' src='unitegallery/js/unitegallery.min.js'></script>
+
+
+    <script type='text/javascript' src='unitegallery/themes/tiles/ug-theme-tiles.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <h2>Team 2 Video Gallery</h2>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">Categories</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" onclick="selectedCatalog = 'All';reload()">All <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="selectedCatalog = 'Action';reload()">Action</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="selectedCatalog = 'Horror';reload()">Horror</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="selectedCatalog = 'Kids';reload()">Kids</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Sort
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#" onclick="sortMethod = 'Asc';reload()">Ascending</a>
+                        <a class="dropdown-item" href="#" onclick="sortMethod = 'Desc';reload()">Descending</a>
+                    </div>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input id="txtSearch" class="form-control mr-sm-2" type="search" placeholder="Title Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchKeyword = jQuery('#txtSearch').val() ;reload()">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div id="gallery" style="display:none;">
+<!--
+         <img alt="John Wick" data-type="youtube" src="images/thumbs/video1.jpg" data-image="images/thumbs/video1.jpg"
+            data-description="Jon Wick Trailer" data-videoid="l1g0fn5Nm_g" style="display:none">
+
+        <img alt="Guardians of the Galaxy" data-type="youtube" src="images/thumbs/video2.jpg"
+            data-image="images/thumbs/video2.jpg" data-description="Guardians of the Galaxy Trailer"
+            data-videoid="crIaEzXgqto" style="display:none">
+
+        <img alt="Lucy" data-type="youtube" src="images/thumbs/video3.jpg" data-image="images/thumbs/video3.jpg"
+            data-description="Lucy trailer" data-videoid="MVt32qoyhi0" style="display:none">
+
+        <img alt="The Winter Soldier" data-type="youtube" src="images/thumbs/video4.jpg"
+            data-image="images/thumbs/video4.jpg" data-description="The Winter Soldier Trailer"
+            data-videoid="7SlILk2WMTI" style="display:none">
+
+        <img alt="The Hunger Games" data-type="youtube" src="images/thumbs/video5.jpg"
+            data-image="images/thumbs/video5.jpg" data-description="The Hunger Games Trailer" data-videoid="3PkkHsuMrho"
+            style="display:none">
+
+        <img alt="Dracula Untold" data-type="youtube" src="images/thumbs/video6.jpg"
+            data-image="images/thumbs/video6.jpg" data-description="Dracula Untold Trailer" data-videoid="_2aWqecTTuE"
+            style="display:none">
+
+        <img alt="Maleficent" data-type="youtube" src="images/thumbs/video7.jpg" data-image="images/thumbs/video7.jpg"
+            data-description="Maleficent Trailer" data-videoid="w-XO4XiRop0" style="display:none">
+
+        <img alt="300: Rise of an Empire" data-type="youtube" src="images/thumbs/video8.jpg"
+            data-image="images/thumbs/video8.jpg" data-description="300: Rise of an Empire Trailer"
+            data-videoid="G3Rzy7YqUVU" style="display:none">
+
+        <img alt="X-Men: Days of Future Past" data-type="youtube" src="images/thumbs/video9.jpg"
+            data-image="images/thumbs/video9.jpg" data-description="X-Men: Days of Future Past Trailer"
+            data-videoid="gsjtg7m1MMM" style="display:none">
+
+        <img alt="Edge of Tomorrow" data-type="youtube" src="images/thumbs/video10.jpg"
+            data-image="images/thumbs/video10.jpg" data-description="Edge of Tomorrow Trailer"
+            data-videoid="vw61gCe2oqI" style="display:none">
+
+        <img alt="Down of the planet apes" data-type="youtube" src="images/thumbs/video11.jpg"
+            data-image="images/thumbs/video11.jpg" data-description="Down of the planet apes trailer"
+            data-videoid="v0wP5ZkaUGg" style="display:none">
+
+        <img alt="Snowpiercer" data-type="youtube" src="images/thumbs/video12.jpg"
+            data-image="images/thumbs/video12.jpg" data-description="Snowpiercer trailer" data-videoid="fyWfZ9866DE"
+            style="display:none"> -->
+
+    </div>
+
+    <script type="text/javascript">
+        var selectedCatalog = "All";
+        var sortMethod = "Asc";
+        var searchKeyword = "";
+
+        var movieCatalog = [{
+            "alt": "John Wick",
+            "categories": "Action",
+            "type": "youtube",
+            "src": "images/thumbs/video1.jpg",
+            "image": "images/thumbs/video1.jpg",
+            "description": "Jon Wick Trailer",
+            "videoid": "l1g0fn5Nm_g",
+            "style": "display:none"
+        },
+        {
+            "alt": "Guardians of the Galaxy",
+            "categories": "Kids",
+            "type": "youtube",
+            "src": "images/thumbs/video2.jpg",
+            "image": "images/thumbs/video2.jpg",
+            "description": "Guardians of the Galaxy Trailer",
+            "videoid": "crIaEzXgqto",
+            "style": "display:none"
+        },
+        {
+            "alt": "Lucy",
+            "categories": "Action",
+            "type": "youtube",
+            "src": "images/thumbs/video3.jpg",
+            "image": "images/thumbs/video3.jpg",
+            "description": "Lucy trailer",
+            "videoid": "MVt32qoyhi0",
+            "style": "display:none"
+        },
+        {
+            "alt": "Captain America: The Winter Soldier",
+            "categories": "Kids",
+            "type": "youtube",
+            "src": "images/thumbs/video4.jpg",
+            "image": "images/thumbs/video4.jpg",
+            "description": "Captain America: The Winter Soldier",
+            "videoid": "7SlILk2WMTI",
+            "style": "display:none"
+        },
+        {
+            "alt": "The Hunger Games",
+            "categories": "Action",
+            "type": "youtube",
+            "src": "images/thumbs/video6.jpg",
+            "image": "images/thumbs/video6.jpg",
+            "description": "The Hunger Games Trailer",
+            "videoid": "3PkkHsuMrho",
+            "style": "display:none"
+        },
+        {
+            "alt": "Dracula Untold",
+            "categories": "Horror",
+            "type": "youtube",
+            "src": "images/thumbs/video8.jpg",
+            "image": "images/thumbs/video8.jpg",
+            "description": "Dracula Untold Trailer",
+            "videoid": "_2aWqecTTuE",
+            "style": "display:none"
+        },
+        {
+            "alt": "Maleficent",
+            "categories": "Kids",
+            "type": "youtube",
+            "src": "images/thumbs/video5.jpg",
+            "image": "images/thumbs/video5.jpg",
+            "description": "Maleficent Trailer",
+            "videoid": "w-XO4XiRop0",
+            "style": "display:none"
+        },
+        {
+            "alt": "300: Rise of an Empire",
+            "categories": "Action",
+            "type": "youtube",
+            "src": "images/thumbs/video7.jpg",
+            "image": "images/thumbs/video7.jpg",
+            "description": "300: Rise of an Empire Trailer",
+            "videoid": "G3Rzy7YqUVU",
+            "style": "display:none"
+        },
+        {
+            "alt": "X-Men: Days of Future Past",
+            "categories": "Kids",
+            "type": "youtube",
+            "src": "images/thumbs/video9.jpg",
+            "image": "images/thumbs/video9.jpg",
+            "description": "X-Men: Days of Future Past Trailer",
+            "videoid": "gsjtg7m1MMM",
+            "style": "display:none"
+        },
+        {
+            "alt": "Edge of Tomorrow",
+            "categories": "Action",
+            "type": "youtube",
+            "src": "images/thumbs/video10.jpg",
+            "image": "images/thumbs/video10.jpg",
+            "description": "Edge of Tomorrow Trailer",
+            "videoid": "vw61gCe2oqI",
+            "style": "display:none"
+        },
+        {
+            "alt": "Down of the planet apes",
+            "categories": "Kids",
+            "type": "youtube",
+            "src": "images/thumbs/video11.jpg",
+            "image": "images/thumbs/video11.jpg",
+            "description": "Down of the planet apes trailer",
+            "videoid": "v0wP5ZkaUGg",
+            "style": "display:none"
+        },
+        {
+            "alt": "Snowpiercer",
+            "categories": "Action",
+            "type": "youtube",
+            "src": "images/thumbs/video12.jpg",
+            "image": "images/thumbs/video12.jpg",
+            "description": "Snowpiercer trailer",
+            "videoid": "fyWfZ9866DE",
+            "style": "display:none"
+        }
+        ];
+
+        jQuery(document).ready(function () {
+
+            reload();
+
+        });
+
+        function reload() {
+            
+            var filteredData = movieCatalog.map(a => Object.assign({}, a));;
+
+            if (searchKeyword != "") {
+                selectedCatalog = "All";
+                sortMethod = "Asc";
+                filteredData = filteredData.filter(function (a) {
+                    return a.alt.toLowerCase().indexOf( searchKeyword )>=0 ;
+                });
+                searchKeyword = "";
+            }
+            
+            if (selectedCatalog != "All") {
+
+                filteredData = filteredData.filter(function (a) {
+                    return a.categories == selectedCatalog;
+                })
+
+            }
+
+            if (sortMethod == "Asc") {
+                filteredData.sort(function (a, b) {
+                    return (a.alt > b.alt) ? 1 : -1;
+                });
+            }
+            if (sortMethod == "Desc") {
+                filteredData.sort(function (a, b) {
+                    return (a.alt > b.alt) ? -1 : 1;
+                });
+            }
+
+            jQuery("#gallery").empty();
+
+            for (let index = 0; index < filteredData.length; index++) {
+                const element = filteredData[index];
+                jQuery("#gallery").append('<img alt="' + element.alt + '" data-type="youtube" src="' + element.src + '" data-image="' + element.image + '" data-description="' + element.description + '" data-videoid="' + element.videoid + '" style="display:none">');
+            }
+
+            jQuery(".ug-lightbox").remove();
+            jQuery("#gallery").unitegallery({
+                gallery_width: "1524",
+                tile_enable_border: true,
+                tile_border_color: "#ffffff",
+                tile_enable_outline: true,
+                tile_outline_color: "#b6b6b6",
+                tile_shadow_color: "#8B8B8B",
+                tile_overlay_opacity: 0.6,
+                tile_enable_image_effect: true,
+                tile_image_effect_type: "blur",
+                tile_image_effect_reverse: true,
+                tile_enable_textpanel: true,
+                tile_textpanel_bg_color: "#332e68",
+                tile_textpanel_bg_opacity: 0.9,
+                tile_textpanel_title_text_align: "center",
+                lightbox_textpanel_enable_title: false,
+                lightbox_textpanel_enable_description: true,
+                lightbox_textpanel_desc_color: "e5e5e5",
+                tiles_col_width: 200,
+                tiles_space_between_cols: 30
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>
